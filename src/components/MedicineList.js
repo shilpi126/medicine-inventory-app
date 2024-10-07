@@ -7,15 +7,16 @@ const MedicineList = () => {
     const medCtx = useContext(MedicineContext);
      const cartCtx = useContext(CartContext)
      
-    const addToCartData = (event) => {
-        cartCtx.addToCart(event.target.id);
-        medCtx.decreaseQuantity(event.target.id)
+    const addToCartData = (item) => {
+        cartCtx.addToCart(item);
+        
+        medCtx.decreaseQuantity(item._id)
     }
     
   return (
     
-        <ul >
-           {medCtx.medicine.map((item, index) => {
+        <ul>
+            {medCtx.medicine.map((item, index) => {
             return(
                 <li key={item._id}>
                 <p>{index+1}</p>
@@ -23,7 +24,7 @@ const MedicineList = () => {
                 <p>{item.price}</p>
                 <p>{item.description}</p>
                 <p>{item.quantity > 0 ? item.quantity : <p>Out of Stock</p>}</p>
-                {item.quantity > 0 ?  <button id={item._id} onClick={addToCartData}>Add To cart</button> :  <button disabled>Add To cart</button>}
+                {item.quantity > 0 ?  <button  onClick={()=>{addToCartData(item)}}>Add To cart</button> :  <button disabled>Add To cart</button>}
             </li>
             )
            })}

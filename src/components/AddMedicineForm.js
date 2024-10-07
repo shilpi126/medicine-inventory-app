@@ -5,7 +5,7 @@ import CartContext from '../store/cart-context';
 import CartPage from './CartPage';
 const AddMedicineForm = () => {
     const [medicineName, setMedicineName] = useState('');
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
     const [quantity, setQuantity] = useState(1);
     const [toggle, seToggle] = useState(false)
@@ -92,12 +92,12 @@ const AddMedicineForm = () => {
             </form>
             <div>
                 <div className='badge'>{cartCtx.cart.length}</div>
-                <button onClick={handleCartToggle}>Cart</button>
+                <button onClick={handleCartToggle} >Cart</button>
             </div>
           
         </div>
            <div className='cartpage'>
-           {toggle && <CartPage/>}
+           {toggle && <CartPage  onToggle={handleCartToggle}/>}
            </div>
     </React.Fragment>
   )
